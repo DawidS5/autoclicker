@@ -9,7 +9,7 @@ public class HelpFrame extends JFrame {
         this.add(textPane);
         ImageIcon image = new ImageIcon("src/logo.png");
         this.setIconImage(image.getImage());
-        this.setTitle("macro 1.0 help");
+        this.setTitle("autoclicker 1.0 help");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setBounds(400, 0, 443, 600);
         this.setVisible(true);
