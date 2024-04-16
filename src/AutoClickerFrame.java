@@ -53,7 +53,7 @@ public class AutoClickerFrame implements NativeKeyListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ImageIcon image = new ImageIcon("src/logo.png");
         frame.setIconImage(image.getImage());
-        frame.setTitle("macro 1.0 frame");
+        frame.setTitle("autoclicker 1.0");
         frame.addWindowListener( new WindowAdapter()
         {
             public void windowClosing(WindowEvent e)
@@ -64,6 +64,7 @@ public class AutoClickerFrame implements NativeKeyListener {
         });
         frame.setSize(280, 300);
         frame.setLayout(new FlowLayout());
+        frame.setAlwaysOnTop(false);
         frame.setVisible(true);
         button.addActionListener(e -> cleanGlobalScreen());
         button.addActionListener(e -> frame.dispose());
