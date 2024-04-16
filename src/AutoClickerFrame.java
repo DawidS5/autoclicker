@@ -64,7 +64,6 @@ public class AutoClickerFrame implements NativeKeyListener {
         });
         frame.setSize(280, 300);
         frame.setLayout(new FlowLayout());
-        frame.setAlwaysOnTop(true);
         frame.setVisible(true);
         button.addActionListener(e -> cleanGlobalScreen());
         button.addActionListener(e -> frame.dispose());
