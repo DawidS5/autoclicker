@@ -17,7 +17,7 @@ public class Frame extends JFrame {
     public Frame() {
         initComponents();
         this.setResizable(false);
-        this.setTitle("autoclicker 1.0");
+        this.setTitle("autoclicker");
         ImageIcon image = new ImageIcon("src/logo.png");
         this.setIconImage(image.getImage());
         jButton1.addActionListener(e -> {
