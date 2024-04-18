@@ -136,6 +136,9 @@ Thread thread;
                     running = true;
                     if(stopat!=0){
                         for(int i = 0; i < stopat; i++){
+                            if(!running){
+                                break;
+                            }
                             if(mousebutton.equals("left")){
                                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
