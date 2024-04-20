@@ -2,6 +2,8 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 import org.jnativehook.GlobalScreen;
+import org.jnativehook.mouse.NativeMouseEvent;
+import org.jnativehook.mouse.NativeMouseListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +12,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class AutoClickerFrame implements NativeKeyListener {
+public class AutoClickerFrame implements NativeKeyListener, NativeMouseListener {
     private final double cps;
     private double delay;
     private final int stopat;
@@ -19,19 +21,25 @@ public class AutoClickerFrame implements NativeKeyListener {
     private final String mousebutton;
     private boolean clickerEnabled = false;
     private boolean running = false;
+    int x;
 
-    AutoClickerFrame(double cps, String jButton1, String activation, String mousebutton, int stopat){
+    AutoClickerFrame(double cps, String jButton1, String activation, String mousebutton, int stopat, int x){
         this.cps = cps;
         this.jButton1 = jButton1;
         this.activation = activation;
         this.mousebutton = mousebutton;
         this.stopat = stopat;
+        this.x = x;
     }
+    JLabel label6;
     void display(){
         JFrame frame = new JFrame();
         frame.setResizable(false);
+        label6 = new JLabel("clicks: " + x);
+        label6.setBorder(new EmptyBorder(10, 500000, 10,500000));
+        frame.add(label6);
         JLabel label = new JLabel("clicks per seocnd: "+  String.valueOf(cps));
-        label.setBorder(new EmptyBorder(20, 500000, 10,500000));
+        label.setBorder(new EmptyBorder(10, 500000, 10,500000));
         frame.add(label);
         JLabel label2 = new JLabel("key: " + jButton1);
         label2.setBorder(new EmptyBorder(10, 500000, 10,500000));
@@ -62,7 +70,7 @@ public class AutoClickerFrame implements NativeKeyListener {
                 stopThread();
             }
         });
-        frame.setSize(280, 300);
+        frame.setSize(280, 330);
         frame.setLayout(new FlowLayout());
         frame.setAlwaysOnTop(false);
         frame.setVisible(true);
@@ -79,7 +87,7 @@ public class AutoClickerFrame implements NativeKeyListener {
                 startThread();
                 clickerEnabled = true;
             }
-            break;
+                break;
             case "press": if(!clickerEnabled){
                 startThread();
                 clickerEnabled = true;
@@ -102,14 +110,56 @@ public class AutoClickerFrame implements NativeKeyListener {
 
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
-        if(NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).toLowerCase().equals(jButton1.toLowerCase())){
+        if(jButton1.equals("k1") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("1")){
+            KeyPressed();
+        }else if(jButton1.equals("k2") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("2")){
+            KeyPressed();
+        }else if(jButton1.equals("k3") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("3")){
+            KeyPressed();
+        }else if(jButton1.equals("k4") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("4")){
+            KeyPressed();
+        }else if(jButton1.equals("k5") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("5")){
+            KeyPressed();
+        }else if(jButton1.equals("k6") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("6")){
+            KeyPressed();
+        }else if(jButton1.equals("k7") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("7")){
+            KeyPressed();
+        }else if(jButton1.equals("k8") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("8")){
+            KeyPressed();
+        }else if(jButton1.equals("k9") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("9")){
+            KeyPressed();
+        }else if(jButton1.equals("k0") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("0")){
+            KeyPressed();
+        }
+        else if(NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).toLowerCase().equals(jButton1.toLowerCase())){
             KeyPressed();
         }
     }
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
-        if(NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).toLowerCase().equals(jButton1.toLowerCase())){
+        if(jButton1.equals("k1") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("1")){
+            KeyReleased();
+        }else if(jButton1.equals("k2") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("2")){
+            KeyReleased();
+        }else if(jButton1.equals("k3") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("3")){
+            KeyReleased();
+        }else if(jButton1.equals("k4") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("4")){
+            KeyReleased();
+        }else if(jButton1.equals("k5") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("5")){
+            KeyReleased();
+        }else if(jButton1.equals("k6") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("6")){
+            KeyReleased();
+        }else if(jButton1.equals("k7") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("7")){
+            KeyReleased();
+        }else if(jButton1.equals("k8") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("8")){
+            KeyReleased();
+        }else if(jButton1.equals("k9") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("9")){
+            KeyReleased();
+        }else if(jButton1.equals("k10") && NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).equals("10")){
+            KeyReleased();
+        }
+        else if(NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode()).toLowerCase().equals(jButton1.toLowerCase())){
             KeyReleased();
         }
     }
@@ -117,11 +167,12 @@ public class AutoClickerFrame implements NativeKeyListener {
         try {
             GlobalScreen.unregisterNativeHook();
             GlobalScreen.removeNativeKeyListener(this);
+            GlobalScreen.removeNativeMouseListener(this);
         } catch (NativeHookException nativeHookException) {
             nativeHookException.printStackTrace();
         }
     }
-Thread thread;
+    Thread thread;
     public void startThread(){
         thread = new Thread(new Runnable() {
             @Override
@@ -140,10 +191,14 @@ Thread thread;
                                 break;
                             }
                             if(mousebutton.equals("left")){
+                                x++;
+                                label6.setText(String.valueOf("clicks: "+ x));
                                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                                 robot.delay((int) delay);
                             }else{
+                                x++;
+                                label6.setText(String.valueOf("clicks: "+ x));
                                 robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                                 robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
                                 robot.delay((int) delay);
@@ -152,10 +207,14 @@ Thread thread;
                     }else {
                         while (running) {
                             if(mousebutton.equals("left")){
+                                x++;
+                                label6.setText(String.valueOf("clicks: "+ x));
                                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                                 robot.delay((int) delay);
                             }else{
+                                x++;
+                                label6.setText(String.valueOf("clicks: "+ x));
                                 robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                                 robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
                                 robot.delay((int) delay);
@@ -175,4 +234,51 @@ Thread thread;
         running = false;
     }
 
+    @Override
+    public void nativeMouseClicked(NativeMouseEvent nativeMouseEvent) {
+
+    }
+
+    @Override
+    public void nativeMousePressed(NativeMouseEvent nativeMouseEvent) {
+        String str = String.valueOf(nativeMouseEvent.getButton());
+        if(jButton1.equals("m1") && str.equals("1")){
+            KeyPressed();
+        }else if(jButton1.equals("m2") && str.equals("2")){
+            KeyPressed();
+        }else if(jButton1.equals("m3") && str.equals("3")){
+            KeyPressed();
+        }else if(jButton1.equals("m4") && str.equals("4")){
+            KeyPressed();
+        }else if(jButton1.equals("m5") && str.equals("5")){
+            KeyPressed();
+        }else if(jButton1.equals("m6") && str.equals("6")){
+            KeyPressed();
+        }
+        else if(str.equals(jButton1)){
+            KeyPressed();
+        }
+
+    }
+
+    @Override
+    public void nativeMouseReleased(NativeMouseEvent nativeMouseEvent) {
+        String str = String.valueOf(nativeMouseEvent.getButton());
+        if(jButton1.equals("m1") && str.equals("1")){
+            KeyReleased();
+        }else if(jButton1.equals("m2") && str.equals("2")){
+            KeyReleased();
+        }else if(jButton1.equals("m3") && str.equals("3")){
+            KeyReleased();
+        }else if(jButton1.equals("m4") && str.equals("4")){
+            KeyReleased();
+        }else if(jButton1.equals("m5") && str.equals("5")){
+            KeyReleased();
+        }else if(jButton1.equals("m6") && str.equals("6")){
+            KeyReleased();
+        }
+        else if(str.equals(jButton1)){
+            KeyReleased();
+        }
+    }
 }
