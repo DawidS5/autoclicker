@@ -82,7 +82,7 @@ public class Frame extends JFrame {
         jButton3.setText("start");
         jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                    jButton3ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
 
         });
@@ -178,15 +178,17 @@ public class Frame extends JFrame {
             double cps = Double.parseDouble(jTextField1.getText());
             int stopat = Integer.parseInt(jTextField2.getText());
             String bindbutton = jButton1.getText();
+            int x = 0;
 
             try {
                 LogManager.getLogManager().reset();
                 Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
                 logger.setLevel(Level.OFF);GlobalScreen.registerNativeHook();
 
-                f = new AutoClickerFrame(cps, bindbutton, jComboBox1.getSelectedItem().toString(), jComboBox2.getSelectedItem().toString(), stopat);
+                f = new AutoClickerFrame(cps, bindbutton, jComboBox1.getSelectedItem().toString(), jComboBox2.getSelectedItem().toString(), stopat, x);
                 f.display();
                 GlobalScreen.addNativeKeyListener(f);
+                GlobalScreen.addNativeMouseListener(f);
 
             } catch (NativeHookException ex) {
                 ex.printStackTrace();
